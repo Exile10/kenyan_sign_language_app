@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/camera_fragment"
+        android:icon="@drawable/ic_baseline_photo_camera_24"
+        android:title="@string/menu_camera" />
+
+    <item
+        android:id="@id/gallery_fragment"
+        android:icon="@drawable/ic_baseline_photo_library_24"
+        android:title="@string/menu_gallery" />
+
+    <item
+        android:id="@id/model_validation_fragment"
+        android:icon="@drawable/ic_learn"
+        android:title="@string/menu_validate" />
+
+    <item
+        android:id="@id/submit_training_data_fragment"
+        android:icon="@drawable/ic_submit_data"
+        android:title="@string/menu_submit" />
+
+    <item
+        android:id="@id/settings_fragment"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/menu_settings" />
+</menu>

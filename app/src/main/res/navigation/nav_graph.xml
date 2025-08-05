@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/permissions_fragment">
+
+    <fragment
+        android:id="@+id/permissions_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.PermissionsFragment"
+        android:label="PermissionsFragment">
+
+        <action
+            android:id="@+id/action_permissions_to_camera"
+            app:destination="@id/camera_fragment"
+            app:popUpTo="@id/permissions_fragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/camera_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.CameraFragment"
+        android:label="CameraFragment">
+
+        <action
+            android:id="@+id/action_camera_to_permissions"
+            app:destination="@id/permissions_fragment"
+            app:popUpTo="@id/camera_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gallery_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.GalleryFragment"
+        android:label="GalleryFragment" />
+
+    <fragment
+        android:id="@+id/model_validation_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.ModelValidationFragment"
+        android:label="ModelValidationFragment">
+
+        <action
+            android:id="@+id/action_validate_to_history"
+            app:destination="@id/validation_history_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/validation_history_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.ValidationHistoryFragment"
+        android:label="ValidationHistoryFragment" />
+
+    <fragment
+        android:id="@+id/submit_training_data_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.SubmitTrainingDataFragment"
+        android:label="SubmitTrainingDataFragment">
+
+        <action
+            android:id="@+id/action_submit_to_history"
+            app:destination="@id/submission_history_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/submission_history_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.SubmissionHistoryFragment"
+        android:label="SubmissionHistoryFragment" >
+        <action
+            android:id="@+id/action_submission_history_to_training_image_detail"
+            app:destination="@+id/training_image_detail_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/training_image_detail_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.TrainingImageDetailFragment"
+        android:label="TrainingImageDetailFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.SettingsFragment"
+        android:label="SettingsFragment">
+
+        <!-- Navigation to new profile management screens -->
+        <action
+            android:id="@+id/action_settings_to_profile"
+            app:destination="@id/profile_fragment" />
+
+        <action
+            android:id="@+id/action_settings_to_security"
+            app:destination="@id/account_security_fragment" />
+
+        <action
+            android:id="@+id/action_settings_to_preferences"
+            app:destination="@id/user_preferences_fragment" />
+    </fragment>
+
+    <!-- NEW: Enhanced Profile Management Screens -->
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.ProfileFragment"
+        android:label="ProfileFragment">
+
+        <action
+            android:id="@+id/action_profile_to_preferences"
+            app:destination="@id/user_preferences_fragment" />
+
+        <action
+            android:id="@+id/action_profile_to_security"
+            app:destination="@id/account_security_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_preferences_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.UserPreferencesFragment"
+        android:label="UserPreferencesFragment" />
+
+    <fragment
+        android:id="@+id/account_security_fragment"
+        android:name="com.jerry.ksl.gesturerecognizer.fragment.AccountSecurityFragment"
+        android:label="AccountSecurityFragment" />
+
+</navigation>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/camera_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.CameraFragment">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/view_finder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scaleType="fillStart" >
+
+        <com.jerry.ksl.gesturerecognizer.OverlayView
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.camera.view.PreviewView>
+
+    <!-- RecyclerView for results display (e.g., word history or debug) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_results"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="top"
+        android:background="@color/bottom_sheet_background"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/bottom_sheet_padding"
+        android:paddingTop="@dimen/bottom_sheet_padding"
+        android:paddingEnd="@dimen/bottom_sheet_padding"
+        android:paddingBottom="@dimen/bottom_sheet_padding"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+    <View
+        android:id="@+id/recycler_view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/mp_color_primary"
+        app:layout_anchor="@id/recyclerview_results"
+        app:layout_anchorGravity="bottom" />
+
+    <!-- Word collection display area -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/word_collection_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="72dp"
+        android:backgroundTint="#80000000"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/current_mode_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mode_word_recognition"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/recognized_words"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/recognized_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:minHeight="50dp"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/clear_text_button"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/clear_recognized_words"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    app:tint="@android:color/white" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/timer_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textColor="#AAFFFFFF"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="5s remaining" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- New Controls Panel -->
+    <LinearLayout
+        android:id="@+id/controls_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#99000000"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Confidence Threshold Control -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confidence:"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="8dp"/>
+
+            <SeekBar
+                android:id="@+id/confidence_threshold_seekbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="100"
+                android:progress="90" />
+
+            <TextView
+                android:id="@+id/confidence_threshold_value"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="0.90"
+                android:gravity="end"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
+        <!-- Other controls -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/mode_switch"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="@string/switch_live_mode_text"
+                android:layout_weight="1"
+                android:textColor="@android:color/white" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/tts_switch"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:text="@string/switch_tts_text"
+                android:layout_weight="1"
+                android:textColor="@android:color/white"/>
+
+            <ImageButton
+                android:id="@+id/camera_switch_button"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/flip_camera"
+                android:padding="8dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_baseline_cameraswitch_24"
+                app:tint="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,14 @@
+
+
+task downloadTaskFile(type: Download) {
+    src 'https://firebasestorage.googleapis.com/v0/b/jerry-ksl-app.firebasestorage.app/o/ksl_first_model.task?alt=media&token=3567777a-db0b-4ef1-ac6d-84e1d0c9587a'
+    dest project.ext.ASSET_DIR + '/ksl_first_model.task'
+    overwrite false
+}
+
+task copyTestModel(type: Copy, dependsOn: downloadTaskFile) {
+    from project.ext.ASSET_DIR + '/gesture_recognizer.task'
+    into project.ext.TEST_ASSETS_DIR
+}
+
+preBuild.dependsOn downloadTaskFile
