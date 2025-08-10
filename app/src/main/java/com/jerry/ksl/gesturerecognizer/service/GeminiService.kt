@@ -22,7 +22,7 @@ class GeminiService(private val context: Context) {
         private const val GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
         // Direct API key - using this directly since BuildConfig field isn't working
-        private const val API_KEY = "AIzaSyCYAnFcz3iTHoIpSKWJZljwZmv2B11bmyI"
+        private const val API_KEY = "INSERT_HERE"
     }
 
     // Initialize OkHttpClient for HTTP requests
